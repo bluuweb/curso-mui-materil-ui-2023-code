@@ -8,12 +8,12 @@ import {
 
 import { Box } from "@mui/system";
 
-export default function NavListDrawer({ navLinks, component, setOpen }) {
+export default function NavListDrawer({ navegationLinks, component, setOpen }) {
   return (
     <Box sx={{ width: 250 }}>
       <nav>
         <List>
-          {navLinks.map((item) => (
+          {navegationLinks.map((item) => (
             <ListItem
               disablePadding
               key={item.title}
