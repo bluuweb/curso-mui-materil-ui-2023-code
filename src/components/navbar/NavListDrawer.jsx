@@ -1,5 +1,4 @@
 import {
-  Divider,
   List,
   ListItem,
   ListItemButton,
@@ -9,26 +8,9 @@ import {
 
 import { Box } from "@mui/system";
 
-export default function NavListDrawer({ navLinks }) {
+export default function NavListDrawer({ navLinks, component, setOpen }) {
   return (
     <Box sx={{ width: 250 }}>
-      {/* <nav>
-        <List>
-          <ListItem>
-            <ListItemIcon>
-              <InboxIcon />
-            </ListItemIcon>
-            <ListItemText primary="Inbox" />
-          </ListItem>
-          <ListItem>
-            <ListItemIcon>
-              <DraftsIcon />
-            </ListItemIcon>
-            <ListItemText primary="Drafts" />
-          </ListItem>
-        </List>
-      </nav>
-      <Divider /> */}
       <nav>
         <List>
           {navLinks.map((item) => (
@@ -37,8 +19,9 @@ export default function NavListDrawer({ navLinks }) {
               key={item.title}
             >
               <ListItemButton
-                component="a"
-                href={item.path}
+                component={component}
+                to={item.path}
+                onClick={() => setOpen(false)}
               >
                 <ListItemIcon>{item.icon}</ListItemIcon>
                 <ListItemText>{item.title}</ListItemText>

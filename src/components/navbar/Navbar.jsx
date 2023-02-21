@@ -14,20 +14,22 @@ import InboxIcon from "@mui/icons-material/Inbox";
 import DraftsIcon from "@mui/icons-material/Drafts";
 import { Box } from "@mui/system";
 
+import { NavLink } from "react-router-dom";
+
 const navLinks = [
   {
     title: "Home",
-    path: "#",
+    path: "/",
     icon: <InboxIcon />,
   },
   {
     title: "Login",
-    path: "#login",
+    path: "/login",
     icon: <DraftsIcon />,
   },
   {
     title: "Register",
-    path: "#register",
+    path: "/register",
     icon: <MenuIcon />,
   },
 ];
@@ -60,8 +62,8 @@ export default function Navbar() {
               <Button
                 color="inherit"
                 key={item.title}
-                component="a"
-                href={item.path}
+                component={NavLink}
+                to={item.path}
               >
                 {item.title}
               </Button>
@@ -76,7 +78,11 @@ export default function Navbar() {
         onClose={() => setOpen(false)}
         sx={{ display: { xs: "flex", sm: "none" } }}
       >
-        <NavListDrawer navLinks={navLinks} />
+        <NavListDrawer
+          navLinks={navLinks}
+          component={NavLink}
+          setOpen={setOpen}
+        />
       </Drawer>
     </>
   );
