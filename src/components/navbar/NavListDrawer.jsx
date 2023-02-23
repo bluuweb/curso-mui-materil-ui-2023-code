@@ -9,36 +9,20 @@ import {
 
 import { Box } from "@mui/system";
 
-export default function NavListDrawer({ navLinks }) {
+export default function NavListDrawer({ navArrayLinks, NavLink, setOpen }) {
   return (
     <Box sx={{ width: 250 }}>
-      {/* <nav>
-        <List>
-          <ListItem>
-            <ListItemIcon>
-              <InboxIcon />
-            </ListItemIcon>
-            <ListItemText primary="Inbox" />
-          </ListItem>
-          <ListItem>
-            <ListItemIcon>
-              <DraftsIcon />
-            </ListItemIcon>
-            <ListItemText primary="Drafts" />
-          </ListItem>
-        </List>
-      </nav>
-      <Divider /> */}
       <nav>
         <List>
-          {navLinks.map((item) => (
+          {navArrayLinks.map((item) => (
             <ListItem
               disablePadding
               key={item.title}
             >
               <ListItemButton
-                component="a"
-                href={item.path}
+                component={NavLink}
+                to={item.path}
+                onClick={() => setOpen(false)}
               >
                 <ListItemIcon>{item.icon}</ListItemIcon>
                 <ListItemText>{item.title}</ListItemText>

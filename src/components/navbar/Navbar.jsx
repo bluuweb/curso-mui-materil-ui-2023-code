@@ -10,29 +10,11 @@ import NavListDrawer from "./NavListDrawer";
 import { useState } from "react";
 
 import MenuIcon from "@mui/icons-material/Menu";
-import InboxIcon from "@mui/icons-material/Inbox";
-import DraftsIcon from "@mui/icons-material/Drafts";
 import { Box } from "@mui/system";
 
-const navLinks = [
-  {
-    title: "Home",
-    path: "#",
-    icon: <InboxIcon />,
-  },
-  {
-    title: "Login",
-    path: "#login",
-    icon: <DraftsIcon />,
-  },
-  {
-    title: "Register",
-    path: "#register",
-    icon: <MenuIcon />,
-  },
-];
+import { NavLink } from "react-router-dom";
 
-export default function Navbar() {
+export default function Navbar({ navArrayLinks }) {
   const [open, setOpen] = useState(false);
 
   return (
@@ -56,12 +38,12 @@ export default function Navbar() {
           </Typography>
 
           <Box sx={{ display: { xs: "none", sm: "block" } }}>
-            {navLinks.map((item) => (
+            {navArrayLinks.map((item) => (
               <Button
                 color="inherit"
                 key={item.title}
-                component="a"
-                href={item.path}
+                component={NavLink}
+                to={item.path}
               >
                 {item.title}
               </Button>
@@ -76,7 +58,11 @@ export default function Navbar() {
         onClose={() => setOpen(false)}
         sx={{ display: { xs: "flex", sm: "none" } }}
       >
-        <NavListDrawer navLinks={navLinks} />
+        <NavListDrawer
+          navArrayLinks={navArrayLinks}
+          NavLink={NavLink}
+          setOpen={setOpen}
+        />
       </Drawer>
     </>
   );
